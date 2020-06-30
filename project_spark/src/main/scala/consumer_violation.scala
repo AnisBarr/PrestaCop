@@ -1,0 +1,3 @@
+class consumer_violation {
+
+}
