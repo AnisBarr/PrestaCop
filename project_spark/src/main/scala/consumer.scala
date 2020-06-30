@@ -38,9 +38,6 @@ object Consumer {
 
       for (data <- record.iterator){
         println(data.value())
-        val bos = new BufferedOutputStream(new FileOutputStream("filename"data.value()))
-        bos.write(byteArray)
-        bos.close()
       }
 
     }

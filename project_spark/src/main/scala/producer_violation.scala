@@ -1,15 +1,14 @@
-/*
 import java.awt.image.BufferedImage
 import java.util.Properties
 import java.nio.file.{Files, Paths}
 
-import org.apache.hadoop.io.file.tfile.ByteArray
+
 import org.apache.kafka.clients.producer._
 
 import scala.util.Random
 
 
-object Producer {
+object Producer_violation {
 
 
   def main(args: Array[String]): Unit = {
@@ -17,15 +16,6 @@ object Producer {
     writeToKafka("drone_topic")
 
   }
-
-  def message(id: Int): String = {
-    val rnd = new Random()
-    val latitude = 40+ rnd.nextDouble()
-    val longitude = -73 - rnd.nextDouble()
-    val timestamp: Long = System.currentTimeMillis / 1000
-    id+","+latitude +","+longitude+","+timestamp
-  }
-
 
   def writeToKafka(topic: String): Unit = {
 
@@ -38,14 +28,14 @@ object Producer {
     props.put("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer")
 
     val producer = new KafkaProducer[String, Array[Byte]](props)
-    val byteArray = Files.readAllBytes(Paths.get("/home/anis/cours_s2/spark/project_spark/image-generator-master/test.png"))
+    val byteArray = Files.readAllBytes(Paths.get("src/main/resources/test.png"))
     while (true){
 
       for (i <- 0 to 100) {
-        var record = new ProducerRecord[String, Array[Byte]](topic, "key",byteArray)
+        var record = new ProducerRecord[String, Array[Byte]](topic, i.toString,byteArray)
         producer.send(record)
       }
-      Thread.sleep(1000)
+      Thread.sleep(10000)
     }
 
     producer.close()
@@ -55,6 +45,7 @@ object Producer {
 }
 
 
+/*
 
 
 import java.util.Properties
