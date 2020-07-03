@@ -12,8 +12,8 @@ object Producer {
 
   }
 
-  def message(id: Int): String = {
-    val rnd = new Random()
+  def message(id: Int,rnd : Random ): String = {
+
     val latitude = 40+ rnd.nextDouble()
     val longitude = -73 - rnd.nextDouble()
     val timestamp: Long = System.currentTimeMillis / 1000
@@ -30,11 +30,12 @@ object Producer {
     props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
 
     props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
+    val rnd = new Random()
 
     val producer = new KafkaProducer[String, String](props)
     while (true){
       for (i <- 0 to 100) {
-        var record = new ProducerRecord[String, String](topic, "key",message(i))
+        var record = new ProducerRecord[String, String](topic, "key",message(i,rnd))
         producer.send(record)
       }
       Thread.sleep(1000)

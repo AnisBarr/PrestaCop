@@ -28,14 +28,16 @@ object Producer_violation {
     props.put("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer")
 
     val producer = new KafkaProducer[String, Array[Byte]](props)
-    val byteArray = Files.readAllBytes(Paths.get("src/main/resources/test.png"))
+    val rnd = new Random()
     while (true){
 
-      for (i <- 0 to 100) {
-        var record = new ProducerRecord[String, Array[Byte]](topic, i.toString,byteArray)
-        producer.send(record)
-      }
+      val i =  rnd.nextInt(100)+1
+      val j = rnd.nextInt(100)
+      val byteArray = Files.readAllBytes(Paths.get("src/main/resources/test"+i+".png"))
+      var record = new ProducerRecord[String, Array[Byte]](topic, j.toString,byteArray)
+      producer.send(record)
       Thread.sleep(10000)
+
     }
 
     producer.close()
