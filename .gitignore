@@ -6,4 +6,5 @@ apache-hive-3.1.2-bin/
 3498_1146042_bundle_archive/
 kafka_2.12-2.1.0/
 metastore_db/
-derby.log
+derby.log/
+project_spark/checkpoint/
