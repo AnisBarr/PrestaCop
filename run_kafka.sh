@@ -5,7 +5,7 @@ $HADOOP_HOME/sbin/start-dfs.sh
 hdfs dfs -mkdir /tmp
 hdfs dfs -mkdir /storage
 hdfs dfs -mkdir /storage/message
-
+hdfs dfs -mkdir /storage/history
 hdfs dfs -mkdir /storage/violation
 hdfs dfs -mkdir /storage/violation/image_violation
 
@@ -22,4 +22,3 @@ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 -
 # hdfs dfs -ls /storage/message
 
 
-#CREATE TABLE IF NOT EXISTS history ( id_drone INT, cord_latitude DOUBLE, cord_longitude DOUBLE, unix_time BIGINT, level_batterie INT , status_drone STRING , temperature INT) row format delimited by ',' stored as textfile;
