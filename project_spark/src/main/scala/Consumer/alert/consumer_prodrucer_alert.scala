@@ -44,11 +44,11 @@ object consumer_prodrucer_alert {
         if (dt.length >6) {
 
           val id_violation = dt(6)
-          println(id_violation)
 
           if (id_violation == "999") {
             val record = new ProducerRecord[String, String]("alert_topic","alert" ,data.value())
             producer_alert.send(record)
+            println(id_violation)
             print(data.value())
 
           }

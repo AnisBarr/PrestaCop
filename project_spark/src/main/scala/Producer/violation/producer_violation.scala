@@ -64,7 +64,7 @@ object producer_violation {
 
       producer.send(record)
       producer_image.send(rec)
-      Thread.sleep(30000)
+      Thread.sleep(3000)
 
     }
 

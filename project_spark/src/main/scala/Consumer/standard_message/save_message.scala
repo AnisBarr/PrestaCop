@@ -52,10 +52,10 @@ object save_message {
       .start()
       .awaitTermination()
 
-    tmp_df.writeStream.format("console")
+    /*tmp_df.writeStream.format("console")
       .outputMode("append")
       .start()
       .awaitTermination()
-
+*/
   }
 }
